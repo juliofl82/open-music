@@ -1,86 +1,76 @@
 import { applyInputRangeStyle } from './inputRange.js';
 import { fetchAlbums } from './api.js';
 
-// Aplica estilos personalizados ao input range
+// Variáveis globais para armazenar o gênero selecionado e todos os álbuns
+let selectedGenre = 'Todos';
+let allAlbums = [];
+
+// Aplica os estilos da função do inputRange.js
 applyInputRangeStyle();
 
-// Função inicial chamada quando o DOM estiver completamente carregado
-async function initialize() {
-    try {
-        // Busca os álbuns da API e renderiza na página
-        const albums = await fetchAlbums();
-        renderAlbumCards(albums);
-        // Configura ouvintes de eventos para filtragem e seleção de gênero
-        setupEventListeners(albums);
-    } catch (error) {
-        console.error('Failed to fetch albums:', error);
-    }
+// Função para destacar o botão de gênero selecionado e aplicar filtros
+function selectGenre(genre) {
+  selectedGenre = genre;
+  document.querySelectorAll('.filterByGenre_button').forEach(button => {
+    button.classList.toggle('active', button.innerText === genre);
+  });
+  filterAndRenderAlbumsByPrice();
 }
 
-// Configura os ouvintes de eventos para interações do usuário
-function setupEventListeners(albums) {
-    // Adiciona evento de clique nos botões de gênero para ativar a seleção
-    document.querySelectorAll('.filterByGenre_button').forEach(button => {
-        button.addEventListener('click', function() {
-            selectGenre(this);
-        });
-    });
-
-    // Configura o ouvinte de eventos no input range para filtrar os álbuns por preço
-    const priceRangeInput = document.querySelector("#priceRange");
-    priceRangeInput.addEventListener("input", () => filterAndRenderAlbumsByPrice(albums, parseFloat(priceRangeInput.value)));
-}
-
-// Filtra e renderiza álbuns baseado no valor do input range
-function filterAndRenderAlbumsByPrice(albums, priceValue) {
-    const filteredAlbums = albums.filter(album => parseFloat(album.price) <= priceValue);
-    renderAlbumCards(filteredAlbums);
-}
-
-// Renderiza os cards de álbuns na página
-function renderAlbumCards(albumList) {
-    const albumsGrid = document.querySelector('.albunsGrid');
-    albumsGrid.innerHTML = ''; // Limpa o grid antes de adicionar novos cards
-
-    albumList.forEach(album => {
-        const albumCard = createAlbumCard(album);
-        albumsGrid.appendChild(albumCard);
-    });
-}
-
-// Cria a estrutura HTML de um card de álbum
+// Função para criar a estrutura HTML de um card de álbum
 function createAlbumCard(album) {
-    const albumCard = document.createElement('li');
-    albumCard.classList.add('albunsCard');
+  const albumCard = document.createElement('li');
+  albumCard.classList.add('albunsCard');
 
-    albumCard.innerHTML = `
-        <img src="${album.img}" alt="Capa do álbum ${album.title}">
-        <div class="albumTitle"><h3>${album.title}</h3></div>
-        <div class="albumDetails"><p>${album.band}</p><p>${album.genre}</p></div>
-        <div class="albumPricing"><p class="albumPrice">R$${album.price}</p><button class="buyButtons">Comprar</button></div>
-    `;
+  albumCard.innerHTML = `
+    <img src="${album.img}" alt="Capa do álbum ${album.title}">
+    <div class="albumTitle"><h3>${album.title}</h3></div>
+    <div class="albumDetails"><p>${album.band}</p><p>${album.genre}</p></div>
+    <div class="albumPricing"><p class="albumPrice">R$${album.price}</p><button class="buyButtons">Comprar</button></div>
+  `;
 
-    return albumCard;
+  return albumCard;
 }
 
-// Destaca o botão de gênero selecionado pelo usuário
-function selectGenre(selectedButton) {
-    const buttons = document.querySelectorAll('.filterByGenre_button');
+// Função para renderizar os cards dos álbuns com base nos filtros aplicados
+async function filterAndRenderAlbumsByPrice() {
+  const priceValue = parseFloat(document.querySelector("#priceRange").value);
+  const filteredAlbums = allAlbums.filter(album =>
+    parseFloat(album.price) <= priceValue &&
+    (selectedGenre === 'Todos' || album.genre === selectedGenre));
+  renderAlbumCards(filteredAlbums);
+}
 
-    buttons.forEach(button => {
-        button.classList.remove('active');
+// Função para adicionar os cards dos álbuns filtrados ao DOM
+function renderAlbumCards(albumList) {
+  const albumsGrid = document.querySelector('.albunsGrid');
+  albumsGrid.innerHTML = ''; // Limpa o grid antes de adicionar novos cards
+
+  albumList.forEach(album => {
+    const albumCard = createAlbumCard(album);
+    albumsGrid.appendChild(albumCard);
+  });
+}
+
+// Função para configurar os ouvintes de eventos
+function setupEventListeners() {
+  document.querySelectorAll('.filterByGenre_button').forEach(button => {
+    button.addEventListener('click', function () {
+      selectGenre(this.innerText);
     });
-    selectedButton.classList.add('active');
+  });
+
+  document.querySelector("#priceRange").addEventListener("input", filterAndRenderAlbumsByPrice);
+}
+// Função inicial para buscar os álbuns da API e configurar a aplicação
+async function initialize() {
+  try {
+    allAlbums = await fetchAlbums(); // Busca os álbuns da API
+    setupEventListeners(); // Configura os ouvintes de eventos
+    filterAndRenderAlbumsByPrice(); // Renderiza os álbuns inicialmente sem filtro de preço aplicado
+  } catch (error) {
+    console.error('Failed to fetch albums:', error);
+  }
 }
 
-// Chamada inicial quando o DOM estiver pronto
 document.addEventListener('DOMContentLoaded', initialize);
-
-
-
-
-
-
-
-
-

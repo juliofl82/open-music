@@ -24,4 +24,5 @@
     height: 26px;
     background-color: var(--grey-6);
     color: var(--grey-2);
+    cursor: pointer;
 }
