@@ -19,22 +19,32 @@
 
 .filterByGenre_list {
     display: flex;
+    align-items: center;
     width: 100vw;
     max-width: 1024px;
-    height: 64px;
-    padding: 16px 0px 16px 0px;
+    height: 64px;    
     gap: 25px;
-    list-style-type: none;
-    border: red 2px solid;
+    list-style-type: none;    
 }
 
 .filterByGenre_button {
-    width: 56px;
+    display: flex;
+    align-items: center;    
     height: 32px;
     border-radius: 4px;
-    border: 1px;
+    border: 1px solid transparent;
     padding: 10.2px 11.2px 10.2px 11.2px;
     gap: 10px;
     background-color: rgba(241, 243, 245, 1);  
-    size: 16px;  
+    font-size: 16px;  
+    cursor: pointer;
+}
+
+.filterByGenre_button:hover {
+    border-color: black;
+}
+
+.filterByGenre_button.active {       
+    color: white;
+    background-color: black;
 }

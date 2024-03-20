@@ -1,74 +1,168 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Open Music</title>
-    <!-- <script type="module" src="./src/scripts/index.js"></script> -->
-    <link rel="stylesheet" href="./src/styles/index.css">
 
-  </head>
-  <body>
-    <!-- CABEÇALHO -->
-    <header class="header_container">
-      <!-- DESENVOLVA AQUI OS ELEMENTOS DO CABEÇALHO -->
-      <div class="header_title">
-        <h1><span>o</span>pen <span>m</span>usic</h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Open Music</title>
+  <!-- <script type="module" src="./src/scripts/index.js"></script> -->
+  <link rel="stylesheet" href="./src/styles/index.css">
+  <script defer src="./src/scripts/index.js"></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      document.getElementById('priceRange').oninput = function () {
+        document.getElementById('priceValue').textContent = `R$${this.value},00`;
+      };
+    });
+  </script>
+
+</head>
+
+<body>
+  <!-- CABEÇALHO -->
+  <header class="header_container">
+    <div class="header_title">
+      <h1><span>o</span>pen <span>m</span>usic</h1>
+    </div>
+    <div class="header_icon">
+      <img src="./src/assets/icons/moon-icon.svg" alt="icone de lua">
+    </div>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main>
+    <!-- SEÇÃO DE FILTRO POR GENERO -->
+    <section class="filterByGenre_container">
+      <div class="filterByGenre_title">
+        <h2>Gênero Musical</h2>
       </div>
-      <div class="header_icon">
-        <img src="./src/assets/icons/moon-icon.svg" alt="icone de lua">
-      </div>      
-    </header>
+      <div>
+        <ul class="filterByGenre_list">
+          <li>
+            <button class="filterByGenre_button">Todos</button>
+          </li>
+          <li>
+            <button class="filterByGenre_button">Pop</button>
+          </li>
+          <li>
+            <button class="filterByGenre_button">MPB</button>
+          </li>
+          <li>
+            <button class="filterByGenre_button">Forró</button>
+          </li>
+          <li>
+            <button class="filterByGenre_button">Samba</button>
+          </li>
+          <li>
+            <button class="filterByGenre_button">Balão</button>
+          </li>
+          <li>
+            <button class="filterByGenre_button">Rap</button>
+          </li>
+          <li>
+            <button class="filterByGenre_button">Hip-Hop</button>
+          </li>
+        </ul>
+      </div>
+    </section>
 
-    <!-- CONTEÚDO PRINCIPAL -->
-    <main>
-      <!-- SEÇÃO DE FILTRO POR GENERO -->
-      <section class="filterByGenre_container">
-        <div class="filterByGenre_title">
-          <h2>Gênero Musical</h2>
-        </div>
-        <div>
-          <ul class="filterByGenre_list">
-            <li>
-              <button class="filterByGenre_button">Todos</button>
-            </li>
-            <li>
-              <button class="filterByGenre_button">Pop</button>
-            </li>
-            <li>
-              <button class="filterByGenre_button">MPB</button>
-            </li>
-            <li>
-              <button class="filterByGenre_button">Forró</button>
-            </li>
-            <li>
-              <button class="filterByGenre_button">Samba</button>
-            </li>
-            <li>
-              <button class="filterByGenre_button">Balão</button>
-            </li>
-            <li>
-              <button class="filterByGenre_button">Rap</button>
-            </li>
-            <li>
-              <button class="filterByGenre_button">Hip-Hop</button>
-            </li>
-          </ul>
-        </div>
-        
+    <!-- SEÇÃO DE FILTRO POR PREÇO -->
+    <section class="filterByPrice_container">
+      <div class="filterByPrice_title">
+        <h2>Definir Preço</h2>
+        <p>Até <span id="priceValue">R$100,00</span></p>
+      </div>
+      <input type="range" class="price_range" id="priceRange" min="0" max="100" value="1000" step="1">
+    </section>
 
-        <!-- DESENVOLVA AQUI OS ELEMENTOS DA SEÇÃO -->
-      </section>
-
-      <!-- SEÇÃO DE FILTRO POR PREÇO -->
-      <section>
-        <!-- DESENVOLVA AQUI OS ELEMENTOS DA SEÇÃO -->
-      </section>
-
-      <!-- SEÇÃO DE ALBUNS -->
-      <section>
-        <!-- DESENVOLVA AQUI OS ELEMENTOS DA SEÇÃO -->
-      </section>
-    </main>
-  </body>
+    <!-- SEÇÃO DE ALBUNS -->
+    <section class="albunsSection_container">
+      <div class="albunsFound">
+        <h2>Albuns Encontrados</h2>
+      </div>
+      <div class="albunsList">
+        <ul class="albunsGrid">
+          <li class="albunsCard"><img src="./src/assets/imgs/cover-1.png" alt="Capa disco 1">
+            <div class="albumTitle">
+              <h3>Acabou o Chorare</h3>
+            </div>
+            <div class="albumDetails">
+              <p>Novos Baianos</p>
+              <p>MPB</p>
+            </div>
+            <div class="albumPricing">
+              <p class="albumPrice">R$137,91</p>
+              <button class="buyButtons">Comprar</button>
+            </div>
+          </li>
+          <li class="albunsCard"><img src="./src/assets/imgs/cover-2.png" alt="Capa disco 2">
+            <div class="albumTitle">
+              <h3>The Wall</h3>
+            </div>
+            <div class="albumDetails">
+              <p>Pink Floyd</p>
+              <p>Rock</p>
+            </div>
+            <div class="albumPricing">
+              <p class="albumPrice">R$123,56</p>
+              <button class="buyButtons">Comprar</button>
+            </div>
+          </li>
+          <li class="albunsCard"><img src="./src/assets/imgs/cover-3.png" alt="Capa disco 3">
+            <div class="albumTitle">
+              <h3>To Pimp a Butterfly</h3>
+            </div>
+            <div class="albumDetails">
+              <p>Kendrick Lamar</p>
+              <p>Rap</p>
+            </div>
+            <div class="albumPricing">
+              <p class="albumPrice">R$102,66</p>
+              <button class="buyButtons">Comprar</button>
+            </div>
+          </li>
+          <li class="albunsCard"><img src="./src/assets/imgs/cover-2.png" alt="Capa disco 4">
+            <div class="albumTitle">
+              <h3>The Wall</h3>
+            </div>
+            <div class="albumDetails">
+              <p>Pink Floyd</p>
+              <p>Rock</p>
+            </div>
+            <div class="albumPricing">
+              <p class="albumPrice">R$123,56</p>
+              <button class="buyButtons">Comprar</button>
+            </div>
+          </li>
+          <li class="albunsCard"><img src="./src/assets/imgs/cover-1.png" alt="Capa disco 5">
+            <div class="albumTitle">
+              <h3>Acabou o Chorare</h3>
+            </div>
+            <div class="albumDetails">
+              <p>Novos Baianos</p>
+              <p>MPB</p>
+            </div>
+            <div class="albumPricing">
+              <p class="albumPrice">R$137,91</p>
+              <button class="buyButtons">Comprar</button>
+            </div>
+          </li>
+          <li class="albunsCard"><img src="./src/assets/imgs/cover-3.png" alt="Capa disco 3">
+            <div class="albumTitle">
+              <h3>To Pimp a Butterfly</h3>
+            </div>
+            <div class="albumDetails">
+              <p>Kendrick Lamar</p>
+              <p>Rap</p>
+            </div>
+            <div class="albumPricing">
+              <p class="albumPrice">R$102,66</p>
+              <button class="buyButtons">Comprar</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</body>
 </html>

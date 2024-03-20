@@ -1,3 +1,50 @@
-:root {
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
+:root {
+    --font-family-primary: 'Inter', sans-serif;
+    /* -------------------   Variavel das Fontes----------------------*/
+    --font1-size: 28px;
+    --font1-weight: 600;
+    /* --font1-line-height: 1.4; */
+    --font2-size: 16px;
+    --font2-weight: 600;
+    /* --font2-line-height: 1.6; */
+    --font3-size: 16px;
+    --font3-weight: 500;
+    /* --font3-line-height: 1.6; */
+
+    /* -------------------   Variavel das Cores----------------------*/
+    /* Tons de Cinza */
+    --grey-0: rgba(21, 23, 26, 1);
+    --grey-1: rgba(33, 37, 41, 1);
+    --grey-2: rgba(43, 47, 51, 1);
+    --grey-3: rgba(134, 142, 150, 1);
+    --grey-4: rgba(173, 181, 189, 1);
+    --grey-5: rgba(206, 212, 218, 1);
+    --grey-6: rgba(222, 226, 230, 1);
+    --grey-7: rgba(241, 243, 245, 1);
+    --grey-8: rgba(248, 249, 250, 1);
+    --grey-9: rgba(253, 254, 255, 1);
+
+    /* ----------- Variavel da Marca (Brand Color) ---------------------*/
+    --brand-1: rgba(151, 71, 255, 1);
+    --brand-2: rgba(134, 41, 255, 1);
+
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family-primary);
+}
+
+body {
+    font-family: var(--font-family-primary);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 144px;
 }
