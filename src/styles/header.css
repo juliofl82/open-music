@@ -11,11 +11,17 @@
     position: fixed; 
     top: 0; 
     z-index: 1000;  
-    background-color: white;
+    background-color: var(--grey-8);
+    color: var(--grey-2);
 }
-
-
 
 .header_title span {
     color:var(--brand-1);    
+}
+
+#theme-icon {
+    width: 34px;
+    height: 26px;
+    background-color: var(--grey-6);
+    color: var(--grey-2);
 }

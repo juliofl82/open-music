@@ -29,9 +29,17 @@
     /* ----------- Variavel da Marca (Brand Color) ---------------------*/
     --brand-1: rgba(151, 71, 255, 1);
     --brand-2: rgba(134, 41, 255, 1);
-
-
 }
+
+/* -------------------- Ajustes Dark Mode ----------------------*/
+
+[data-theme="dark"] {
+    --grey-8: rgba(21, 23, 26, 1); 
+    --grey-2: rgba(253, 254, 255, 1);
+    --grey-7: rgba(43, 47, 51, 1);
+    --grey-6: rgba(33, 37, 41, 1);
+    
+  }
 
 * {
     margin: 0;
@@ -42,6 +50,7 @@
 
 body {
     font-family: var(--font-family-primary);
+    background-color: var(--grey-8);
     display: flex;
     flex-direction: column;
     justify-content: center;

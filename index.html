@@ -7,14 +7,9 @@
   <title>Open Music</title>
   <!-- <script type="module" src="./src/scripts/index.js"></script> -->
   <link rel="stylesheet" href="./src/styles/index.css">
-  <script defer src="./src/scripts/index.js"></script>
-  <script defer>
-    document.addEventListener('DOMContentLoaded', (event) => {
-      document.getElementById('priceRange').oninput = function () {
-        document.getElementById('priceValue').textContent = `R$${this.value},00`;
-      };
-    });
-  </script>
+  <script type="module" defer src="./src/scripts/index.js"></script>
+  <script type="module" defer src="./src/scripts/theme.js"></script>
+  
 
 </head>
 
@@ -25,7 +20,9 @@
       <h1><span>o</span>pen <span>m</span>usic</h1>
     </div>
     <div class="header_icon">
-      <img src="./src/assets/icons/moon-icon.svg" alt="icone de lua">
+      <button id="theme-toggle-button">
+        <img src="./src/assets/icons/moon-icon.svg" alt="Icone de lua" id="theme-icon">
+      </button>      
     </div>
   </header>
 
@@ -70,9 +67,9 @@
     <section class="filterByPrice_container">
       <div class="filterByPrice_title">
         <h2>Definir Preço</h2>
-        <p>Até <span id="priceValue">R$100,00</span></p>
+        <p>Até <span id="priceValue">R$150,00</span></p>
       </div>
-      <input type="range" class="price_range" id="priceRange" min="0" max="100" value="1000" step="1">
+      <input type="range" class="price_range" id="priceRange" min="0" max="150" value="150" step="1">
     </section>
 
     <!-- SEÇÃO DE ALBUNS -->

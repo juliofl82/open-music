@@ -12,6 +12,7 @@
     align-items: center;
     max-width: 1024px;
     width: 100vw;
+    color: var(--grey-2);
 }
 
 .filterByPrice_title span {
